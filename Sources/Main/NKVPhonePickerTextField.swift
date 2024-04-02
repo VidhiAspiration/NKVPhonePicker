@@ -134,7 +134,7 @@ open class NKVPhonePickerTextField: TextFieldPatternFormat {
     
     /// Insets for the flag icon.
     ///
-    /// Left and right insets affect on flag view. 
+    /// Left and right insets affect on flag view.
     /// Top and bottom insets - on image only.
     public var flagInsets: UIEdgeInsets? { didSet { customizeSelf() } }
     
@@ -151,7 +151,7 @@ open class NKVPhonePickerTextField: TextFieldPatternFormat {
     // MARK: - Implementation
     
     // MARK: Initialization
-    // With code initialization you always must define textField's height 
+    // With code initialization you always must define textField's height
     // in order to properly add a plus label.
     @available(*, unavailable)
     init() {
@@ -177,6 +177,8 @@ open class NKVPhonePickerTextField: TextFieldPatternFormat {
         flagView = NKVFlagView(with: self)
         self.keyboardType = .phonePad
         self.delegate = self
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(presentCountriesViewController))
+        self.addGestureRecognizer(tapGesture)
         flagView.flagButton.addTarget(self, action: #selector(presentCountriesViewController), for: .touchUpInside)
         self.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         
